@@ -167,8 +167,8 @@ module.exports = function (grunt) {
                         'http://127.0.0.1:9999/tests/index.html',
                         'http://127.0.0.1:9999/tests/browserify/index.html'
                     ],
-
-                    build: process.env.TRAVIS_BUILD_NUMBER,
+                    testname: process.env.CIRCLE_JOB,
+                    build: process.env.CIRCLE_BUILD_NUM,
                     sauceConfig: {
                         'record-video': false,
                         'capture-html': false,
@@ -177,11 +177,6 @@ module.exports = function (grunt) {
                     },
                     throttled: 3,
                     browsers: [
-                        {
-                            browserName: 'internet explorer',
-                            platform: 'Windows XP',
-                            version: '7'
-                        },
                         {
                             browserName: 'internet explorer',
                             platform: 'Windows 7',
@@ -204,28 +199,13 @@ module.exports = function (grunt) {
                         },
                         {
                             browserName: 'chrome',
-                            platform: 'Windows 7',
+                            platform: 'Windows 10',
                             version: '37'
                         },
                         {
                             browserName: 'firefox',
-                            platform: 'Windows 7',
+                            platform: 'Windows 10',
                             version: '32'
-                        },
-                        {
-                            browserName: 'iphone',
-                            platform: 'OS X 10.9',
-                            version: '7.1'
-                        },
-                        {
-                            browserName: 'android',
-                            platform: 'Linux',
-                            version: '4.4'
-                        },
-                        {
-                            browserName: 'safari',
-                            platform: 'OS X 10.9',
-                            version: '7'
                         }
                     ]
                 }
