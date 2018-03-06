@@ -6,7 +6,7 @@ See the accompanying LICENSE file for terms.
 
 /* jslint esnext: true */
 
-import IntlMessageFormat from 'intl-messageformat';
+import IntlMessageFormat from 'tag-messageformat';
 import diff from './diff';
 import {
     defineProperty,
@@ -133,7 +133,8 @@ RelativeFormat.prototype._compileMessage = function (units) {
     }
 
     var message = '{when, select, future {{0, plural, ' + future + '}}' +
-                                 'past {{0, plural, ' + past + '}}}';
+                                 'past {{0, plural, ' + past + '}}' +
+                                 'other {}}';
 
     // Create the synthetic IntlMessageFormat instance using the original
     // locales value specified by the user when constructing the the parent
