@@ -20,14 +20,26 @@ export default RelativeFormat;
 
 // -----------------------------------------------------------------------------
 
-var FIELDS = [
-    'second', 'second-short',
-    'minute', 'minute-short',
-    'hour', 'hour-short',
-    'day', 'day-short',
-    'month', 'month-short',
-    'year', 'year-short'
+var STANDARD_FIELDS = [
+    'second',
+    'minute',
+    'hour',
+    'day',
+    'month',
+    'year'
 ];
+
+var SHORT_FIELDS = [
+    'second-short',
+    'minute-short',
+    'hour-short',
+    'day-short',
+    'month-short',
+    'year-short'
+];
+
+var FIELDS = STANDARD_FIELDS.concat(SHORT_FIELDS);
+
 var STYLES = ['best fit', 'numeric'];
 
 // -- RelativeFormat -----------------------------------------------------------
@@ -298,12 +310,8 @@ RelativeFormat.prototype._resolveStyle = function (style) {
 
 RelativeFormat.prototype._selectUnits = function (diffReport) {
     var i, l, units;
-    var fields = FIELDS.filter(function(field) {
-        return field.indexOf('-short') < 1;
-    });
-
-    for (i = 0, l = fields.length; i < l; i += 1) {
-        units = fields[i];
+    for (i = 0, l = STANDARD_FIELDS.length; i < l; i += 1) {
+        units = STANDARD_FIELDS[i];
 
         if (Math.abs(diffReport[units]) < RelativeFormat.thresholds[units]) {
             break;
