@@ -167,8 +167,8 @@ module.exports = function (grunt) {
                         'http://127.0.0.1:9999/tests/index.html',
                         'http://127.0.0.1:9999/tests/browserify/index.html'
                     ],
-                    testname: process.env.CIRCLE_JOB,
-                    build: process.env.CIRCLE_BUILD_NUM,
+                    testname: 'tag-relativeformat (' + (process.env.CIRCLE_BUILD_NUM  || 'local') + ')',
+                    build: process.env.CIRCLE_BUILD_NUM || 'local',
                     sauceConfig: {
                         'record-video': false,
                         'capture-html': false,
