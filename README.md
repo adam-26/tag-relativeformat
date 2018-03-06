@@ -1,14 +1,20 @@
-Intl RelativeFormat
+Tag RelativeFormat
 ===================
 
 Formats JavaScript dates to relative time strings (e.g., "3 hours ago").
 
-[![npm Version][npm-badge]][npm]
-[![Build Status][travis-badge]][travis]
-[![Dependency Status][david-badge]][david]
+[![npm](https://img.shields.io/npm/v/tag-relativeformat.svg)](https://www.npmjs.com/package/tag-relativeformat)
+[![npm](https://img.shields.io/npm/dm/tag-relativeformat.svg)](https://www.npmjs.com/package/tag-relativeformat)
+[![CircleCI branch](https://img.shields.io/circleci/project/github/adam-26/tag-relativeformat/master.svg)](https://circleci.com/gh/adam-26/tag-relativeformat/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/331df55214b607afcbbb/maintainability)](https://codeclimate.com/github/adam-26/intl-relativeformat/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/331df55214b607afcbbb/test_coverage)](https://codeclimate.com/github/adam-26/intl-relativeformat/test_coverage)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-[![Sauce Test Status][sauce-badge]][sauce]
+> This is a fork of [intl-relativeformat](https://github.com/yahoo/intl-relativeformat)
 
+_Differences_ from the original package:
+ * `Tags` are supported using the[tag-messageformat-parser](github.com/adam-26/intl-messageformat-parser). Read that packages readme for more information about tags.
+ * `.` is permitted to be used in argument and tag names
 
 Overview
 --------
