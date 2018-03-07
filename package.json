@@ -1,6 +1,6 @@
 {
   "name": "tag-relativeformat",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Formats JavaScript dates to relative time strings.",
   "keywords": [
     "intl",
