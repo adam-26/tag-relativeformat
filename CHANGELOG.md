@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/adam-26/intl-relativeformat/compare/v3.0.1...v3.0.2) (2018-03-10)
+
+
+### Bug Fixes
+
+* **code:** Update tag-messageformat ([8c3062f](https://github.com/adam-26/intl-relativeformat/commit/8c3062f))
+* **code:** Update tag-messageformat  ([#6](https://github.com/adam-26/intl-relativeformat/issues/6)) ([e44015b](https://github.com/adam-26/intl-relativeformat/commit/e44015b))
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/adam-26/intl-relativeformat/compare/v3.0.0...v3.0.1) (2018-03-07)
 
