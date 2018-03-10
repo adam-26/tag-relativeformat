@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.3"></a>
+## [3.0.3](https://github.com/adam-26/intl-relativeformat/compare/v3.0.2...v3.0.3) (2018-03-10)
+
+
+### Bug Fixes
+
+* **build:** sauce labs test ([3174c28](https://github.com/adam-26/intl-relativeformat/commit/3174c28))
+* **build:** sauce labs test ([#7](https://github.com/adam-26/intl-relativeformat/issues/7)) ([53e0cd2](https://github.com/adam-26/intl-relativeformat/commit/53e0cd2))
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/adam-26/intl-relativeformat/compare/v3.0.1...v3.0.2) (2018-03-10)
 
