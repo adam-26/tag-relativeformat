@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.5"></a>
+## [3.0.5](https://github.com/adam-26/intl-relativeformat/compare/v3.0.4...v3.0.5) (2018-03-12)
+
+
+### Bug Fixes
+
+* **code:** Update dependencies ([90d6463](https://github.com/adam-26/intl-relativeformat/commit/90d6463))
+* **code:** Update dependencies ([#9](https://github.com/adam-26/intl-relativeformat/issues/9)) ([d6dbc7b](https://github.com/adam-26/intl-relativeformat/commit/d6dbc7b))
+
+
+
 <a name="3.0.4"></a>
 ## [3.0.4](https://github.com/adam-26/intl-relativeformat/compare/v3.0.3...v3.0.4) (2018-03-12)
 
