@@ -28,7 +28,7 @@
     "./lib/locales.js": false
   },
   "dependencies": {
-    "tag-messageformat": "^3.5.0"
+    "tag-messageformat": "^3.6.0"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
