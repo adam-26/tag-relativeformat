@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/adam-26/tag-relativeformat/compare/v3.0.5...v3.1.0) (2018-03-13)
+
+
+### Features
+
+* **code:** Rename browser export ([45ea043](https://github.com/adam-26/tag-relativeformat/commit/45ea043))
+* **code:** Rename browser export ([#1](https://github.com/adam-26/tag-relativeformat/issues/1)) ([697d4c2](https://github.com/adam-26/tag-relativeformat/commit/697d4c2))
+
+
+
 <a name="3.0.5"></a>
 ## [3.0.5](https://github.com/adam-26/intl-relativeformat/compare/v3.0.4...v3.0.5) (2018-03-12)
 
