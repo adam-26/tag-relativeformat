@@ -6,7 +6,7 @@ See the accompanying LICENSE file for terms.
 
 /* jslint esnext: true */
 
-import IntlMessageFormat from 'tag-messageformat';
+import TagMessageFormat from 'tag-messageformat';
 import diff from './diff';
 import {
     defineProperty,
@@ -76,15 +76,15 @@ defineProperty(RelativeFormat, '__localeData__', {value: objCreate(null)});
 defineProperty(RelativeFormat, '__addLocaleData', {value: function (data) {
     if (!(data && data.locale)) {
         throw new Error(
-            'Locale data provided to IntlRelativeFormat is missing a ' +
+            'Locale data provided to TagRelativeFormat is missing a ' +
             '`locale` property value'
         );
     }
 
     RelativeFormat.__localeData__[data.locale.toLowerCase()] = data;
 
-    // Add data to IntlMessageFormat.
-    IntlMessageFormat.__addLocaleData(data);
+    // Add data to TagMessageFormat.
+    TagMessageFormat.__addLocaleData(data);
 }});
 
 // Define public `defaultLocale` property which can be set by the developer, or
@@ -148,10 +148,10 @@ RelativeFormat.prototype._compileMessage = function (units) {
                                  'past {{0, plural, ' + past + '}}' +
                                  'other {}}';
 
-    // Create the synthetic IntlMessageFormat instance using the original
+    // Create the synthetic TagMessageFormat instance using the original
     // locales value specified by the user when constructing the the parent
-    // IntlRelativeFormat instance.
-    return new IntlMessageFormat(message, locales);
+    // TagRelativeFormat instance.
+    return new TagMessageFormat(message, locales);
 };
 
 RelativeFormat.prototype._getMessage = function (units) {
@@ -188,7 +188,7 @@ RelativeFormat.prototype._findFields = function (locale) {
     }
 
     throw new Error(
-        'Locale data added to IntlRelativeFormat is missing `fields` for :' +
+        'Locale data added to TagRelativeFormat is missing `fields` for :' +
         locale
     );
 };
@@ -204,14 +204,14 @@ RelativeFormat.prototype._format = function (date, options) {
     // similar error to what `Intl.DateTimeFormat#format()` would throw.
     if (!isFinite(now)) {
         throw new RangeError(
-            'The `now` option provided to IntlRelativeFormat#format() is not ' +
+            'The `now` option provided to TagRelativeFormat#format() is not ' +
             'in valid range.'
         );
     }
 
     if (!isFinite(date)) {
         throw new RangeError(
-            'The date value provided to IntlRelativeFormat#format() is not ' +
+            'The date value provided to TagRelativeFormat#format() is not ' +
             'in valid range.'
         );
     }
@@ -242,14 +242,14 @@ RelativeFormat.prototype._isValidUnits = function (units) {
         var suggestion = /s$/.test(units) && units.substr(0, units.length - 1);
         if (suggestion && arrIndexOf.call(FIELDS, suggestion) >= 0) {
             throw new Error(
-                '"' + units + '" is not a valid IntlRelativeFormat `units` ' +
+                '"' + units + '" is not a valid TagRelativeFormat `units` ' +
                 'value, did you mean: ' + suggestion
             );
         }
     }
 
     throw new Error(
-        '"' + units + '" is not a valid IntlRelativeFormat `units` value, it ' +
+        '"' + units + '" is not a valid TagRelativeFormat `units` value, it ' +
         'must be one of: "' + FIELDS.join('", "') + '"'
     );
 };
@@ -287,7 +287,7 @@ RelativeFormat.prototype._resolveLocale = function (locales) {
 
     var defaultLocale = locales.pop();
     throw new Error(
-        'No locale data has been added to IntlRelativeFormat for: ' +
+        'No locale data has been added to TagRelativeFormat for: ' +
         locales.join(', ') + ', or the default locale: ' + defaultLocale
     );
 };
@@ -303,7 +303,7 @@ RelativeFormat.prototype._resolveStyle = function (style) {
     }
 
     throw new Error(
-        '"' + style + '" is not a valid IntlRelativeFormat `style` value, it ' +
+        '"' + style + '" is not a valid TagRelativeFormat `style` value, it ' +
         'must be one of: "' + STYLES.join('", "') + '"'
     );
 };

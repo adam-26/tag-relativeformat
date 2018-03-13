@@ -2,8 +2,8 @@
 
 global.Intl || require('intl');
 
-var IntlRelativeFormat = require('../../');
+var TagRelativeFormat = require('../../');
 
 module.exports = function () {
-    new IntlRelativeFormat('en');
+    new TagRelativeFormat('en');
 };

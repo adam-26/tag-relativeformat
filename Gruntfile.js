@@ -22,8 +22,8 @@ module.exports = function (grunt) {
 
         concat: {
             dist_with_locales: {
-                src: ['dist/intl-relativeformat.js', 'dist/locale-data/*.js'],
-                dest: 'dist/intl-relativeformat-with-locales.js',
+                src: ['dist/tag-relativeformat.js', 'dist/locale-data/*.js'],
+                dest: 'dist/tag-relativeformat-with-locales.js',
 
                 options: {
                     sourceMap: true
@@ -60,11 +60,11 @@ module.exports = function (grunt) {
                 options: {
                     prelude: [
                         '// GENERATED FILE',
-                        'var IntlRelativeFormat = require("./core")["default"];\n\n'
+                        'var TagRelativeFormat = require("./core")["default"];\n\n'
                     ].join('\n'),
 
                     wrapEntry: function (entry) {
-                        return 'IntlRelativeFormat.__addLocaleData(' + entry + ');';
+                        return 'TagRelativeFormat.__addLocaleData(' + entry + ');';
                     }
                 }
             },
@@ -74,17 +74,17 @@ module.exports = function (grunt) {
 
                 options: {
                     wrapEntry: function (entry) {
-                        return 'IntlRelativeFormat.__addLocaleData(' + entry + ');';
+                        return 'TagRelativeFormat.__addLocaleData(' + entry + ');';
                     }
                 }
             }
         },
 
         bundle_jsnext: {
-            dest: 'dist/intl-relativeformat.js',
+            dest: 'dist/tag-relativeformat.js',
             options: {
-                namespace : 'IntlRelativeFormat',
-                sourceRoot: 'intl-relativeformat/'
+                namespace : 'TagRelativeFormat',
+                sourceRoot: 'tag-relativeformat/'
             }
         },
 
@@ -96,30 +96,30 @@ module.exports = function (grunt) {
             options: {
                 preserveComments       : 'some',
                 sourceMap              : true,
-                sourceMapRoot          : 'intl-relativeformat/',
+                sourceMapRoot          : 'tag-relativeformat/',
                 sourceMapIncludeSources: true
             },
 
             dist: {
                 options: {
-                    sourceMapIn: 'dist/intl-relativeformat.js.map'
+                    sourceMapIn: 'dist/tag-relativeformat.js.map'
                 },
 
                 files: {
-                    'dist/intl-relativeformat.min.js': [
-                        'dist/intl-relativeformat.js'
+                    'dist/tag-relativeformat.min.js': [
+                        'dist/tag-relativeformat.js'
                     ]
                 }
             },
 
             dist_with_locales: {
                 options: {
-                    sourceMapIn: 'dist/intl-relativeformat-with-locales.js.map'
+                    sourceMapIn: 'dist/tag-relativeformat-with-locales.js.map'
                 },
 
                 files: {
-                    'dist/intl-relativeformat-with-locales.min.js': [
-                        'dist/intl-relativeformat-with-locales.js'
+                    'dist/tag-relativeformat-with-locales.min.js': [
+                        'dist/tag-relativeformat-with-locales.js'
                     ]
                 }
             }
@@ -177,11 +177,12 @@ module.exports = function (grunt) {
                     },
                     throttled: 3,
                     browsers: [
-                        {
-                            browserName: 'internet explorer',
-                            platform: 'Windows 7',
-                            version: '8'
-                        },
+                        // The latest version of `intl` doesn't appear to support IE8
+                        // {
+                        //     browserName: 'internet explorer',
+                        //     platform: 'Windows 7',
+                        //     version: '8'
+                        // },
                         {
                             browserName: 'internet explorer',
                             platform: 'Windows 7',

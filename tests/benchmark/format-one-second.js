@@ -2,9 +2,9 @@
 
 global.Intl || require('intl');
 
-var IntlRelativeFormat = require('../../');
+var TagRelativeFormat = require('../../');
 
-var o = new IntlRelativeFormat('en');
+var o = new TagRelativeFormat('en');
 
 var ts = new Date().getTime() - 1001;
 
