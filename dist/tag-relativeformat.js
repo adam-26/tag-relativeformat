@@ -2333,7 +2333,7 @@
     $$es51$$defineProperty($$core1$$MessageFormat, '__addLocaleData', {value: function (data) {
         if (!(data && data.locale)) {
             throw new Error(
-                'Locale data provided to IntlMessageFormat is missing a ' +
+                'Locale data provided to TagMessageFormat is missing a ' +
                 '`locale` property'
             );
         }
@@ -2379,7 +2379,7 @@
         }
 
         throw new Error(
-            'Locale data added to IntlMessageFormat is missing a ' +
+            'Locale data added to TagMessageFormat is missing a ' +
             '`pluralRuleFunction` for :' + locale
         );
     };
@@ -2481,7 +2481,7 @@
 
         var defaultLocale = locales.pop();
         throw new Error(
-            'No locale data has been added to IntlMessageFormat for: ' +
+            'No locale data has been added to TagMessageFormat for: ' +
             locales.join(', ') + ', or the default locale: ' + defaultLocale
         );
     };
@@ -2654,14 +2654,14 @@
     $$es5$$defineProperty($$core$$RelativeFormat, '__addLocaleData', {value: function (data) {
         if (!(data && data.locale)) {
             throw new Error(
-                'Locale data provided to IntlRelativeFormat is missing a ' +
+                'Locale data provided to TagRelativeFormat is missing a ' +
                 '`locale` property value'
             );
         }
 
         $$core$$RelativeFormat.__localeData__[data.locale.toLowerCase()] = data;
 
-        // Add data to IntlMessageFormat.
+        // Add data to TagMessageFormat.
         tag$messageformat$$default.__addLocaleData(data);
     }});
 
@@ -2726,9 +2726,9 @@
                                      'past {{0, plural, ' + past + '}}' +
                                      'other {}}';
 
-        // Create the synthetic IntlMessageFormat instance using the original
+        // Create the synthetic TagMessageFormat instance using the original
         // locales value specified by the user when constructing the the parent
-        // IntlRelativeFormat instance.
+        // TagRelativeFormat instance.
         return new tag$messageformat$$default(message, locales);
     };
 
@@ -2766,7 +2766,7 @@
         }
 
         throw new Error(
-            'Locale data added to IntlRelativeFormat is missing `fields` for :' +
+            'Locale data added to TagRelativeFormat is missing `fields` for :' +
             locale
         );
     };
@@ -2782,14 +2782,14 @@
         // similar error to what `Intl.DateTimeFormat#format()` would throw.
         if (!isFinite(now)) {
             throw new RangeError(
-                'The `now` option provided to IntlRelativeFormat#format() is not ' +
+                'The `now` option provided to TagRelativeFormat#format() is not ' +
                 'in valid range.'
             );
         }
 
         if (!isFinite(date)) {
             throw new RangeError(
-                'The date value provided to IntlRelativeFormat#format() is not ' +
+                'The date value provided to TagRelativeFormat#format() is not ' +
                 'in valid range.'
             );
         }
@@ -2820,14 +2820,14 @@
             var suggestion = /s$/.test(units) && units.substr(0, units.length - 1);
             if (suggestion && $$es5$$arrIndexOf.call($$core$$FIELDS, suggestion) >= 0) {
                 throw new Error(
-                    '"' + units + '" is not a valid IntlRelativeFormat `units` ' +
+                    '"' + units + '" is not a valid TagRelativeFormat `units` ' +
                     'value, did you mean: ' + suggestion
                 );
             }
         }
 
         throw new Error(
-            '"' + units + '" is not a valid IntlRelativeFormat `units` value, it ' +
+            '"' + units + '" is not a valid TagRelativeFormat `units` value, it ' +
             'must be one of: "' + $$core$$FIELDS.join('", "') + '"'
         );
     };
@@ -2865,7 +2865,7 @@
 
         var defaultLocale = locales.pop();
         throw new Error(
-            'No locale data has been added to IntlRelativeFormat for: ' +
+            'No locale data has been added to TagRelativeFormat for: ' +
             locales.join(', ') + ', or the default locale: ' + defaultLocale
         );
     };
@@ -2881,7 +2881,7 @@
         }
 
         throw new Error(
-            '"' + style + '" is not a valid IntlRelativeFormat `style` value, it ' +
+            '"' + style + '" is not a valid TagRelativeFormat `style` value, it ' +
             'must be one of: "' + $$core$$STYLES.join('", "') + '"'
         );
     };
@@ -2904,7 +2904,7 @@
     $$core$$default.defaultLocale = 'en';
 
     var src$main$$default = $$core$$default;
-    this['IntlRelativeFormat'] = src$main$$default;
+    this['TagRelativeFormat'] = src$main$$default;
 }).call(this);
 
-//# sourceMappingURL=intl-relativeformat.js.map
+//# sourceMappingURL=tag-relativeformat.js.map

@@ -1,9 +1,9 @@
 /* jslint esnext: true */
 
-import IntlRelativeFormat from './core';
+import TagRelativeFormat from './core';
 import defaultLocale from './en';
 
-IntlRelativeFormat.__addLocaleData(defaultLocale);
-IntlRelativeFormat.defaultLocale = 'en';
+TagRelativeFormat.__addLocaleData(defaultLocale);
+TagRelativeFormat.defaultLocale = 'en';
 
-export default IntlRelativeFormat;
+export default TagRelativeFormat;

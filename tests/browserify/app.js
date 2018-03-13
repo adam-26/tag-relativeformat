@@ -1,3 +1,3 @@
 'use strict';
 
-window.IntlRelativeFormat = require('../../');
+window.TagRelativeFormat = require('../../');

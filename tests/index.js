@@ -5,7 +5,7 @@
  */
 
 /*jshint node:true */
-/*global describe,it,beforeEach,afterEach,expect,Intl,IntlRelativeFormat */
+/*global describe,it,beforeEach,afterEach,expect,Intl,TagRelativeFormat */
 'use strict';
 
 var TS = 1409810798651;
@@ -22,17 +22,17 @@ function now() {
     return (new Date()).getTime();
 }
 
-describe('IntlRelativeFormat', function () {
+describe('TagRelativeFormat', function () {
 
     it('should be a function', function () {
-        expect(IntlRelativeFormat).to.be.a('function');
+        expect(TagRelativeFormat).to.be.a('function');
     });
 
     // STATIC
 
     describe('.__addLocaleData( [obj] )', function () {
         it('should respond to .__addLocaleData()', function () {
-            expect(IntlRelativeFormat.__addLocaleData).to.be.a('function');
+            expect(TagRelativeFormat.__addLocaleData).to.be.a('function');
         });
     });
 
@@ -40,17 +40,17 @@ describe('IntlRelativeFormat', function () {
 
     describe('#resolvedOptions()', function () {
         it('should be a function', function () {
-            var rf = new IntlRelativeFormat();
+            var rf = new TagRelativeFormat();
             expect(rf.resolvedOptions).to.be.a('function');
         });
 
         it('should contain `locale`, `style`, and `units` properties', function () {
-            var rf = new IntlRelativeFormat();
+            var rf = new TagRelativeFormat();
             expect(rf.resolvedOptions()).to.have.keys(['locale', 'style', 'units']);
         });
 
         describe('locale', function () {
-            var IRFLocaleData = IntlRelativeFormat.__localeData__;
+            var IRFLocaleData = TagRelativeFormat.__localeData__;
             var localeData    = {};
 
             // Helper to remove and replace the locale data available during the
@@ -58,7 +58,7 @@ describe('IntlRelativeFormat', function () {
             function transferLocaleData(from, to) {
                 for (var locale in from) {
                     if (Object.prototype.hasOwnProperty.call(from, locale)) {
-                        if (locale === IntlRelativeFormat.defaultLocale) {
+                        if (locale === TagRelativeFormat.defaultLocale) {
                             continue;
                         }
 
@@ -77,41 +77,41 @@ describe('IntlRelativeFormat', function () {
             });
 
             it('should default to "en"', function () {
-                var rf = new IntlRelativeFormat();
+                var rf = new TagRelativeFormat();
                 expect(rf.resolvedOptions().locale).to.equal('en');
             });
 
             it('should normalize the casing', function () {
                 transferLocaleData(localeData, IRFLocaleData);
 
-                var rf = new IntlRelativeFormat('en-us');
+                var rf = new TagRelativeFormat('en-us');
                 expect(rf.resolvedOptions().locale).to.equal('en-US');
 
-                rf = new IntlRelativeFormat('EN-US');
+                rf = new TagRelativeFormat('EN-US');
                 expect(rf.resolvedOptions().locale).to.equal('en-US');
             });
 
             it('should be a fallback value when data is missing', function () {
                 IRFLocaleData.fr = localeData.fr;
 
-                var rf = new IntlRelativeFormat('fr-FR');
+                var rf = new TagRelativeFormat('fr-FR');
                 expect(rf.resolvedOptions().locale).to.equal('fr');
 
-                rf = new IntlRelativeFormat('pt');
+                rf = new TagRelativeFormat('pt');
                 expect(rf.resolvedOptions().locale).to.equal('en');
             });
         });
 
         describe('style', function () {
             it('should default to "best fit"', function () {
-                var resolvedOptions = new IntlRelativeFormat().resolvedOptions();
+                var resolvedOptions = new TagRelativeFormat().resolvedOptions();
 
                 expect(resolvedOptions).to.have.property('style');
                 expect(resolvedOptions.style).to.equal('best fit');
             });
 
             it('should use relative units when "best fit"', function () {
-                var rf = new IntlRelativeFormat('en');
+                var rf = new TagRelativeFormat('en');
 
                 function expectNoNumberInOutput(output) {
                     expect(/\d+/.test(output)).to.equal(false);
@@ -125,7 +125,7 @@ describe('IntlRelativeFormat', function () {
             });
 
             it('should always output a number when "numeric" is specified', function () {
-                var rf = new IntlRelativeFormat('en', {style: 'numeric'});
+                var rf = new TagRelativeFormat('en', {style: 'numeric'});
 
                 function expectNumberInOutput(output) {
                     expect(/\d+/.test(output)).to.equal(true);
@@ -141,14 +141,14 @@ describe('IntlRelativeFormat', function () {
 
         describe('units', function () {
             it('should default to `undefined`', function () {
-                var resolvedOptions = new IntlRelativeFormat().resolvedOptions();
+                var resolvedOptions = new TagRelativeFormat().resolvedOptions();
 
                 expect(resolvedOptions).to.have.property('units');
                 expect(resolvedOptions.units).to.equal(undefined);
             });
 
             it('should always output in the specified units', function () {
-                var rf = new IntlRelativeFormat('en', {units: 'day'});
+                var rf = new TagRelativeFormat('en', {units: 'day'});
 
                 expect(rf.format(now())).to.equal('today');
                 expect(rf.format(past(24 * 60 * 60 * 1000))).to.equal('yesterday');
@@ -158,7 +158,7 @@ describe('IntlRelativeFormat', function () {
             });
 
             it('should handle short unit formats', function () {
-                var rf = new IntlRelativeFormat('en', {units: 'minute-short'});
+                var rf = new TagRelativeFormat('en', {units: 'minute-short'});
 
                 expect(rf.format(now())).to.equal('this minute');
                 expect(rf.format(past(24 * 60 * 60 * 1000))).to.equal('1,440 min. ago');
@@ -170,7 +170,7 @@ describe('IntlRelativeFormat', function () {
             it('should validate the specified units', function () {
                 function createInstance(options) {
                     return function () {
-                        return new IntlRelativeFormat('en', options);
+                        return new TagRelativeFormat('en', options);
                     };
                 }
 
@@ -186,7 +186,7 @@ describe('IntlRelativeFormat', function () {
         var rf;
 
         beforeEach(function () {
-            rf = new IntlRelativeFormat();
+            rf = new TagRelativeFormat();
         });
 
         it('should be a function', function () {
@@ -208,7 +208,7 @@ describe('IntlRelativeFormat', function () {
         });
 
         describe('with "es" locale', function () {
-            var rf = new IntlRelativeFormat('es');
+            var rf = new TagRelativeFormat('es');
 
             it('should return right now', function () {
                 var output = rf.format(past());
@@ -253,7 +253,7 @@ describe('IntlRelativeFormat', function () {
         });
 
         describe('with "en" locale', function () {
-            var rf = new IntlRelativeFormat('en');
+            var rf = new TagRelativeFormat('en');
 
             it('should return right now', function () {
                 var output = rf.format(past());
@@ -368,7 +368,7 @@ describe('IntlRelativeFormat', function () {
         });
 
         describe('with "zh" locale', function () {
-            var rf = new IntlRelativeFormat('zh');
+            var rf = new TagRelativeFormat('zh');
 
             it('should return right now', function () {
                 var output = rf.format(now());
@@ -407,7 +407,7 @@ describe('IntlRelativeFormat', function () {
         });
 
         describe('with "zh-Hant-TW" locale', function () {
-            var rf = new IntlRelativeFormat('zh-Hant-TW');
+            var rf = new TagRelativeFormat('zh-Hant-TW');
 
             it('should return right now', function () {
                 var output = rf.format(now());
@@ -446,7 +446,7 @@ describe('IntlRelativeFormat', function () {
         });
 
         describe('with "zh-Hant-HK" locale', function () {
-            var rf = new IntlRelativeFormat('zh-Hant-HK');
+            var rf = new TagRelativeFormat('zh-Hant-HK');
 
             it('should return right now', function () {
                 var output = rf.format(now());
@@ -485,7 +485,7 @@ describe('IntlRelativeFormat', function () {
         });
 
         describe('with `now` option', function () {
-            var rf = new IntlRelativeFormat('en');
+            var rf = new TagRelativeFormat('en');
 
             it('should accept the epoch value', function () {
                 var output = rf.format(new Date(60000), {now: 0});
@@ -515,13 +515,13 @@ describe('IntlRelativeFormat', function () {
     describe('internal format delegation', function () {
         it('should delegate the original `locales` value to internal formats', function () {
             // NOTE: This entire test case is a huge, huge hack to get at the
-            // internals of IntlRelativeFormat, IntlMessageFormat, to finally
+            // internals of TagRelativeFormat, TagMessageFormat, to finally
             // grab ahold of an Intl.NumberFormat instance to check its resolved
             // locale.
 
             var expected = new Intl.NumberFormat('en-GB').resolvedOptions();
 
-            var rf = new IntlRelativeFormat('en-GB');
+            var rf = new TagRelativeFormat('en-GB');
             var internalMF = rf._compileMessage('second');
 
             function checkInternalMessagePattern(pattern) {
@@ -534,7 +534,7 @@ describe('IntlRelativeFormat', function () {
             // Override private method, which will expose the internal Message
             // Format pattern that we can traverse and check that its internal
             // Intl.NumberFormat pattern resolved the correct locale that was
-            // originally passed to the IntlRelativeFormat instance.
+            // originally passed to the TagRelativeFormat instance.
             internalMF._format = checkInternalMessagePattern;
             internalMF.format({});
         });

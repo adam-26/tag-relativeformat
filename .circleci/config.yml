@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     environment:
-      CC_TEST_REPORTER_ID: c6a5199b64c0bb53c6acb38d3ac6ee8b0724d4d62297f5edcc4834e68c0e09df
+      CC_TEST_REPORTER_ID: c3c0546fef5714e27cfe99106d274844ed56186f6b726fe01c84273365cade0f
     docker:
       - image: node:8.4
     working_directory: ~/tag-relativeformat

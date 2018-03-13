@@ -6,15 +6,17 @@ Formats JavaScript dates to relative time strings (e.g., "3 hours ago").
 [![npm](https://img.shields.io/npm/v/tag-relativeformat.svg)](https://www.npmjs.com/package/tag-relativeformat)
 [![npm](https://img.shields.io/npm/dm/tag-relativeformat.svg)](https://www.npmjs.com/package/tag-relativeformat)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/adam-26/tag-relativeformat/master.svg)](https://circleci.com/gh/adam-26/tag-relativeformat/tree/master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/331df55214b607afcbbb/maintainability)](https://codeclimate.com/github/adam-26/intl-relativeformat/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/331df55214b607afcbbb/test_coverage)](https://codeclimate.com/github/adam-26/intl-relativeformat/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/21ddf1a002230e08d05d/maintainability)](https://codeclimate.com/github/adam-26/tag-relativeformat/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/21ddf1a002230e08d05d/test_coverage)](https://codeclimate.com/github/adam-26/tag-relativeformat/test_coverage)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/SAUCE_CI)](https://saucelabs.com/u/SAUCE_CI)
 
 > This is a fork of [intl-relativeformat](https://github.com/yahoo/intl-relativeformat)
 
 _Differences_ from the original package:
- * `Tags` are supported using the[tag-messageformat-parser](github.com/adam-26/intl-messageformat-parser). Read that packages readme for more information about tags.
- * `.` is permitted to be used in argument and tag names
+ * The browser build exports `TagRelativeFormat` instead of `IntlRelativeFormat`
+ * It depends on [tag-messageformat](https://github.com/adam-26/tag-messageformat), instead of [intl-messageformat](https://github.com/yahoo/intl-messageformat).
+   * This is required for use in [intl-fmt](https://github.com/adam-26/intl-fmt)
 
 Overview
 --------
@@ -25,14 +27,14 @@ This package aims to provide a way to format different variations of relative ti
 
 This implementation is very similar to [moment.js][], in concept, although it provides only formatting features based on the Unicode [CLDR][] locale data, an industry standard that supports more than 200 languages.
 
-_Note: This `IntlRelativeFormat` API may change to stay in sync with ECMA-402, but this package will follow [semver][]._
+_Note: This `TagRelativeFormat` API may change to stay in sync with ECMA-402, but this package will follow [semver][]._
 
 ### How It Works
 
 This API is very similar to [ECMA 402][]'s [DateTimeFormat][] and [NumberFormat][].
 
 ```js
-var rf = new IntlRelativeFormat(locales, [options]);
+var rf = new TagRelativeFormat(locales, [options]);
 ```
 
 The `locales` can either be a single language tag, e.g., `"en-US"` or an array of them from which the first match will be used. `options` provides a way to control the output of the formatted relative time string.
@@ -43,10 +45,10 @@ var output = rf.format(someDate, [options]);
 
 ### Common Usage Example
 
-The most common way to use this library is to construct an `IntlRelativeFormat` instance and reuse it many times for formatting different date values; e.g.:
+The most common way to use this library is to construct an `TagRelativeFormat` instance and reuse it many times for formatting different date values; e.g.:
 
 ```js
-var rf = new IntlRelativeFormat('en-US');
+var rf = new TagRelativeFormat('en-US');
 
 var posts = [
     {
@@ -80,7 +82,7 @@ posts.forEach(function (post) {
 
 *  Formats numbers in relative time strings using [`Intl.NumberFormat`][NumberFormat].
 
-* Optimized for repeated calls to an `IntlRelativeFormat` instance's `format()` method.
+* Optimized for repeated calls to an `TagRelativeFormat` instance's `format()` method.
 
 
 Usage
@@ -92,7 +94,7 @@ This package assumes that the [`Intl`][Intl] global object exists in the runtime
 
 **Luckly, there's the [Intl.js][] polyfill!** You will need to conditionally load the polyfill if you want to support runtimes which `Intl` is not already built-in.
 
-### Loading IntlRelativeFormat in Node.js
+### Loading TagRelativeFormat in Node.js
 
 Install package and polyfill:
 
@@ -107,14 +109,14 @@ Simply `require()` this package:
 if (!global.Intl) {
     global.Intl = require('intl'); // polyfill for `Intl`
 }
-var IntlRelativeFormat = require('intl-relativeformat');
-var rf = new IntlRelativeFormat('en');
+var TagRelativeFormat = require('intl-relativeformat');
+var rf = new TagRelativeFormat('en');
 var output = rf.format(dateValue);
 ```
 
 _Note: in Node.js, the data for all 200+ languages is loaded along with the library._
 
-### Loading IntlRelativeFormat in a browser
+### Loading TagRelativeFormat in a browser
 
 If the browser does not already have the `Intl` APIs built-in, the Intl.js Polyfill will need to be loaded on the page along with the locale data for any locales that need to be supported:
 
@@ -139,7 +141,7 @@ By default, Intl RelativeFormat ships with the locale data for English (`en`) bu
 
 _Note: All 200+ languages supported by this package use their root BCP 47 language tag; i.e., the part before the first hyphen (if any)._
 
-### Bundling IntlRelativeFormat with Browserify/Webpack
+### Bundling TagRelativeFormat with Browserify/Webpack
 
 Install package:
 
@@ -150,7 +152,7 @@ npm install intl-relativeformat --save
 Simply `require()` this package and the specific locales you wish to support in the bundle:
 
 ```js
-var IntlRelativeFormat = require('intl-relativeformat');
+var TagRelativeFormat = require('intl-relativeformat');
 require('intl-relativeformat/dist/locale-data/en.js');
 require('intl-relativeformat/dist/locale-data/fr.js');
 ```
@@ -159,9 +161,9 @@ _Note: in Node.js, the data for all 200+ languages is loaded along with the libr
 
 ### Public API
 
-#### `IntlRelativeFormat` Constructor
+#### `TagRelativeFormat` Constructor
 
-To format a date to relative time, use the `IntlRelativeFormat` constructor. The constructor takes two parameters:
+To format a date to relative time, use the `TagRelativeFormat` constructor. The constructor takes two parameters:
 
  - **locales** - _{String | String[]}_ - A string with a BCP 47 language tag, or an array of such strings. If you do not provide a locale, the default locale will be used. When an array of locales is provided, each item and its ancestor locales are checked and the first one with registered locale data is returned. **See: [Locale Resolution](#locale-resolution) for more details.**
 
@@ -172,9 +174,9 @@ _Note: The `rf` instance should be enough for your entire application, unless yo
 
 #### Locale Resolution
 
-`IntlRelativeFormat` uses a locale resolution process similar to that of the built-in `Intl` APIs to determine which locale data to use based on the `locales` value passed to the constructor. The result of this resolution process can be determined by call the `resolvedOptions()` prototype method.
+`TagRelativeFormat` uses a locale resolution process similar to that of the built-in `Intl` APIs to determine which locale data to use based on the `locales` value passed to the constructor. The result of this resolution process can be determined by call the `resolvedOptions()` prototype method.
 
-The following are the abstract steps `IntlRelativeFormat` goes through to resolve the locale value:
+The following are the abstract steps `TagRelativeFormat` goes through to resolve the locale value:
 
 * If no extra locale data is loaded, the locale will _always_ resolved to `"en"`.
 
@@ -183,7 +185,7 @@ The following are the abstract steps `IntlRelativeFormat` goes through to resolv
 * If there's data for the specified locale, then that locale will be resolved; i.e.,
 
     ```js
-    var rf = new IntlRelativeFormat('en-US');
+    var rf = new TagRelativeFormat('en-US');
     assert(rf.resolvedOptions().locale === 'en-US'); // true
     ```
 
@@ -200,7 +202,7 @@ The optional second argument `options` provides a way to customize how the relat
 By default, the relative time is computed to the best fit unit, but you can explicitly call it to force `units` to be displayed in `"second"`, `"second-short"`, `"minute"`, `"minute-short"`, `"hour"`, `"hour-short"`, `"day"`, `"day-short"`, `"month"`, `"month-short"`, `"year"` or `"year-short"`:
 
 ```js
-var rf = new IntlRelativeFormat('en', {
+var rf = new TagRelativeFormat('en', {
     units: 'day'
 });
 var output = rf.format(dateValue);
@@ -213,7 +215,7 @@ As a result, the output will be "70 days ago" instead of "2 months ago".
 By default, the relative time is computed as `"best fit"`, which means that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. But you can force to always use the "numeric" alternative:
 
 ```js
-var rf = new IntlRelativeFormat('en', {
+var rf = new TagRelativeFormat('en', {
     style: 'numeric'
 });
 var output = rf.format(dateValue);
@@ -226,7 +228,7 @@ As a result, the output will be "1 day ago" instead of "yesterday".
 This method returns an object with the options values that were resolved during instance creation. It currently only contains a `locale` property; here's an example:
 
 ```js
-var rf = new IntlRelativeFormat('en-us');
+var rf = new TagRelativeFormat('en-us');
 console.log(rf.resolvedOptions().locale); // => "en-US"
 ```
 
@@ -242,6 +244,12 @@ console.log(output); // => "now"
 ```
 
 If you wish to specify a "now" value, it can be provided via `options.now` and will be used instead of querying `Date.now()` to get the current "now" value.
+
+
+Big Thanks
+-------
+
+Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs](https://saucelabs.com)
 
 
 License
