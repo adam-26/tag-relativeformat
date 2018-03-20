@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/adam-26/tag-relativeformat/compare/v3.1.0...v3.2.0) (2018-03-20)
+
+
+### Features
+
+* **code:** thresholds option ([b5253e8](https://github.com/adam-26/tag-relativeformat/commit/b5253e8))
+* **code:** thresholds option ([#2](https://github.com/adam-26/tag-relativeformat/issues/2)) ([d9f3325](https://github.com/adam-26/tag-relativeformat/commit/d9f3325))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/adam-26/tag-relativeformat/compare/v3.0.5...v3.1.0) (2018-03-13)
 
