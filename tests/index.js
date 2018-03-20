@@ -365,6 +365,15 @@ describe('TagRelativeFormat', function () {
                 var output = rf.format(new Date(now-(60 * 1000)), {now: new Date(now)});
                 expect(output).to.equal('1 minute ago');
             });
+
+            it('should use threshold values passed as options', function () {
+                var thresholds = {
+                    minute: 1
+                };
+
+                var output = rf.format(future(2 * 60 * 1000), { thresholds: thresholds });
+                expect(output).to.equal('this year');
+            });
         });
 
         describe('with "zh" locale', function () {

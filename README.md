@@ -223,6 +223,17 @@ var output = rf.format(dateValue);
 
 As a result, the output will be "1 day ago" instead of "yesterday".
 
+##### thresholds
+
+By default, the TagRelativeFormat.thresholds value is used, this option can be used to customize the thresholds used to format a single value.
+
+```js
+var rf = new TagRelativeFormat('en', {
+    thresholds: { minute: 60 }
+});
+var output = rf.format(dateValue);
+```
+
 #### `resolvedOptions()` Method
 
 This method returns an object with the options values that were resolved during instance creation. It currently only contains a `locale` property; here's an example:

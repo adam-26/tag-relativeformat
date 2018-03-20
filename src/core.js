@@ -217,7 +217,9 @@ RelativeFormat.prototype._format = function (date, options) {
     }
 
     var diffReport  = diff(now, date);
-    var units       = this._options.units || this._selectUnits(diffReport);
+    var units       = this._options.units || this._selectUnits(
+        diffReport,
+        (options && options.thresholds) || RelativeFormat.thresholds);
     var diffInUnits = diffReport[units];
 
     if (this._options.style !== 'numeric') {
@@ -308,12 +310,12 @@ RelativeFormat.prototype._resolveStyle = function (style) {
     );
 };
 
-RelativeFormat.prototype._selectUnits = function (diffReport) {
+RelativeFormat.prototype._selectUnits = function (diffReport, thresholds) {
     var i, l, units;
     for (i = 0, l = STANDARD_FIELDS.length; i < l; i += 1) {
         units = STANDARD_FIELDS[i];
 
-        if (Math.abs(diffReport[units]) < RelativeFormat.thresholds[units]) {
+        if (Math.abs(diffReport[units]) < thresholds[units]) {
             break;
         }
     }
