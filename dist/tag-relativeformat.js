@@ -2795,7 +2795,9 @@
         }
 
         var diffReport  = $$diff$$default(now, date);
-        var units       = this._options.units || this._selectUnits(diffReport);
+        var units       = this._options.units || this._selectUnits(
+            diffReport,
+            (options && options.thresholds) || $$core$$RelativeFormat.thresholds);
         var diffInUnits = diffReport[units];
 
         if (this._options.style !== 'numeric') {
@@ -2886,12 +2888,12 @@
         );
     };
 
-    $$core$$RelativeFormat.prototype._selectUnits = function (diffReport) {
+    $$core$$RelativeFormat.prototype._selectUnits = function (diffReport, thresholds) {
         var i, l, units;
         for (i = 0, l = $$core$$STANDARD_FIELDS.length; i < l; i += 1) {
             units = $$core$$STANDARD_FIELDS[i];
 
-            if (Math.abs(diffReport[units]) < $$core$$RelativeFormat.thresholds[units]) {
+            if (Math.abs(diffReport[units]) < thresholds[units]) {
                 break;
             }
         }
